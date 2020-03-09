@@ -1,6 +1,7 @@
 import React from 'react';
 import FieldGame from "../Components/FieldGame";
 import {connect} from "react-redux";
+import {gameOver} from "../redux/mainReducer";
 // import {ICardsInterface, } from "../redux/interfaces";
 
 // interface IPropsFieldGameContainer {
@@ -12,15 +13,16 @@ import {connect} from "react-redux";
 //     isMove: boolean,
 // }
 
-function FieldGameContainer({cardsGamer1, cardsGamer2, cardGamer1, cardGamer2, compare, isMove}
-: any) {
+function FieldGameContainer({cardsGamer1, cardsGamer2, cardGamer1,
+                                cardGamer2, compare, gameOver, strokeNumber}: any) {
 
     return <FieldGame cardsGamer1={cardsGamer1}
                       cardsGamer2={cardsGamer2}
                       cardGamer1={cardGamer1}
                       cardGamer2={cardGamer2}
                       compare={compare}
-                      isMove={isMove}/>
+                      gameOver={gameOver}
+                      strokeNumber={strokeNumber}/>
 }
 
 const mapStateToProps = (state: any): any => ({
@@ -29,8 +31,8 @@ const mapStateToProps = (state: any): any => ({
     cardGamer1: state.main.cardGamer1,
     cardGamer2: state.main.cardGamer2,
     compare: state.main.compare,
-    isMove: state.main.isMove,
+    strokeNumber: state.main.strokeNumber,
 });
 
 
-export default connect(mapStateToProps, {})(FieldGameContainer);
+export default connect(mapStateToProps, {gameOver})(FieldGameContainer);

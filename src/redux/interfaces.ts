@@ -1,4 +1,4 @@
-import {COMPARE_GAME_CARDS, CONTINUE_GAME, GAME_MOVE, PICK_UP_CARDS, SHUFFLE_CARDS, START_GAME} from "./mainReducer";
+import {COMPARE_GAME_CARDS, GAME_OVER, GAME_MOVE, PICK_UP_CARDS, SHUFFLE_CARDS, START_GAME} from "./mainReducer";
 
 export interface ICardsInterface {
     id?: number,
@@ -15,8 +15,16 @@ export interface IReducerState {
     cardGamer1: ICardsInterface[],
     cardGamer2: ICardsInterface[],
     compare: string,
-    isMove: boolean,
+    strokeNumber: number,
 }
+
+export interface IButton {
+    id: number,
+    buttonClicked: () => void,
+    title: string,
+    isDisabled: boolean
+}
+
 
 export interface IShuffleCards {
     type: typeof SHUFFLE_CARDS
@@ -38,6 +46,6 @@ export interface IPickUpCards {
     type: typeof PICK_UP_CARDS,
 }
 
-export interface IContinueGame {
-    type: typeof CONTINUE_GAME,
+export interface IGameOver {
+    type: typeof GAME_OVER,
 }

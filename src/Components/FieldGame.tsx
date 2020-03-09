@@ -1,21 +1,41 @@
 import React from 'react';
 import '../App.css';
 import PlayerCards from "./PlayerCards";
-import GameTable from "./GameTable";
+import PopUp from "./PopUp";
+import {ICardsInterface} from "../redux/interfaces";
+import FieldForCards from "./FieldForCards";
 
 
-function FieldGame({cardsGamer1, cardsGamer2,
-                       cardGamer1, cardGamer2,
-                       compare, isMove}: any) {
+interface IPropsFieldGame {
+    cardsGamer1: ICardsInterface[],
+    cardsGamer2: ICardsInterface[],
+    cardGamer1: ICardsInterface[],
+    cardGamer2: ICardsInterface[],
+    compare: string,
+    gameOver: () => void,
+    strokeNumber: number,
+}
+
+function FieldGame({cardsGamer1, cardsGamer2, cardGamer1, cardGamer2,
+                       compare, gameOver, strokeNumber}: IPropsFieldGame) {
 
     return (
         <article className="fieldGameContainer">
 
             <PlayerCards numbersOfCards={cardsGamer1.length} gamer={'Gamer 1'}/>
-            <GameTable isMove={isMove}
-                       cardGamer1={cardGamer1}
+            <FieldForCards cardGamer1={cardGamer1}
                        cardGamer2={cardGamer2}
                        compare={compare}/>
+
+            {
+                (cardsGamer2.length === 36 || cardsGamer1.length === 36)
+                && <PopUp gameOver={gameOver}
+                          cardsGamer1={cardsGamer1}
+                          cardsGamer2={cardsGamer2}
+                          strokeNumber={strokeNumber}
+                />
+            }
+
             <PlayerCards numbersOfCards={cardsGamer2.length} gamer={'Gamer 2'}/>
 
         </article>

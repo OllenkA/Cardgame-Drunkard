@@ -5,6 +5,9 @@ import clubs from "../assets/cross.png";
 
 const picture: string[] = [hearts, diamonds, spades, clubs];
 const numberCard: string[] = ['6', '7', '8', '9', '10', 'J', 'D', 'K', 'A'];
+// const numberCard: string[] = ['6', '7', 'A'];
+// const picture: string[] = [hearts,clubs];
+
 
 const findValue = (number: string) => {
     switch (number) {
@@ -59,17 +62,15 @@ export const shuffle = (arr: any) => {
 };
 
 export let compareCards = (value1: any, value2: any) => {
-
-    if(value1 > value2){
-        return '1'
-    }else if(value1 < value2){
-        return '-1'
-    }else if(value1 === 6 && value2 === 14){
+    if(value1 === 6 && value2 === 14){
         return '1'
     }else if(value1 === 14 && value2 === 6){
+        return '-1'
+    }else if(value1 > value2){
+        return '1'
+    }else if(value1 < value2){
         return '-1'
     }else {
         return '0'
     }
-
 };

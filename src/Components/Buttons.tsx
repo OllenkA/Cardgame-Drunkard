@@ -1,29 +1,25 @@
 import React from "react";
+import Button from "./Button";
 
 
 interface IPropsButtons {
-    startGame: () => void,
-    startTheGame: () => void,
-    pickUp: () => void,
-    shuffleCards: () => void,
+    arrayButtons: any,
 }
 
-function Buttons({startTheGame, pickUp, startGame, shuffleCards}: IPropsButtons) {
+function Buttons({arrayButtons}: IPropsButtons) {
+
+    const array = arrayButtons.map((el:any) => {
+
+        return <Button key={el.id}
+                       buttonClicked={el.buttonClicked}
+                       title={el.title}
+                       isDisabled={el.isDisabled}/>
+    });
+
     return (
         <section className='buttonsWrapper'>
 
-            <button onClick={shuffleCards} className='buttonsWrapper_button'>
-                Shuffle cards - Тасовать карты
-            </button>
-            <button onClick={startGame} className='buttonsWrapper_button'>
-                Deal cards - Раздать карты
-            </button>
-            <button onClick={startTheGame} className='buttonsWrapper_button'>
-                MOVE - Ходить
-            </button>
-            <button onClick={pickUp} className='buttonsWrapper_button'>
-                End turn - Закончить ход
-            </button>
+            {array}
 
         </section>
     );

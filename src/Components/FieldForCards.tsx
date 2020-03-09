@@ -1,16 +1,40 @@
 import React from 'react';
 import '../App.css';
 import Card from "./Card";
+import {ICardsInterface} from "../redux/interfaces";
 
 
-function FieldForCards({cardGamer1, cardGamer2, compare}: any) {
+interface IPropsGameTable {
+    cardGamer1: ICardsInterface[],
+    cardGamer2: ICardsInterface[],
+    compare: string,
+}
 
-    return <article className="gameTable">
+function FieldForCards({cardGamer1, cardGamer2, compare}: IPropsGameTable) {
 
-        <Card card={cardGamer1[0]}/>
-        <div>{compare === '-1'?'<<<': compare === '1'?'>>>':'==='}</div>
-        <Card card={cardGamer2[0]}/>
+    const compareCards = (compare: string) => {
 
+        switch (compare) {
+            case '-1':
+                return <div className='gameTable_sign'> &lt; </div>;
+            case '1':
+                return <div className='gameTable_sign'> &gt; </div>;
+            case '0':
+                return  <div className='gameTable_sign'> = </div>;
+        }
+    };
+
+    return <article className='fieldGame'>
+        <section className="gameTable">
+
+            <Card card={cardGamer1[0]}/>
+
+            {compare && ((cardGamer2.length && cardGamer1.length) !== 0)
+            && compareCards(compare)}
+
+            <Card card={cardGamer2[0]}/>
+
+        </section>
     </article>
 }
 
