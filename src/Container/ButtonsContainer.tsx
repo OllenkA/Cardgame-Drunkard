@@ -5,22 +5,22 @@ import Buttons from "../Components/Buttons";
 import {IButton} from "../redux/interfaces";
 
 
-function ButtonsContainer({startGame, gameMove, compareGameCards, pickUpCards, shuffleCards,
-                              cards, cardsGamer1, cardsGamer2, cardGamer1, cardGamer2, compare}: any) {
+function ButtonsContainer({startGame, gameMove, compareGameCards, shuffleCards,
+                              cards, cardsGamer1, cardsGamer2, cardGamer1, cardGamer2}: any) {
 
     const startTheGame = async () => {
         await gameMove();
         compareGameCards();
     };
 
-    const pickUp = () => {
-        if (compare === '0') {
-            gameMove();
-            compareGameCards();
-        } else {
-            pickUpCards()
-        }
-    };
+    // const pickUp = () => {
+    //     if (compare === '0') {
+    //         gameMove();
+    //         compareGameCards();
+    //     } else {
+    //         pickUpCards()
+    //     }
+    // };
 
     const arrayButtons: IButton[] = [
         {
@@ -41,20 +41,17 @@ function ButtonsContainer({startGame, gameMove, compareGameCards, pickUpCards, s
             isDisabled: (cardsGamer1.length === 0 || cardsGamer2.length === 0)
                 || (cardGamer1.length !== 0 || cardGamer2.length !== 0)
         },
-        {
-            id: 4,
-            buttonClicked: pickUp,
-            title: 'End turn - Закончить ход',
-            isDisabled: false},
+        // {
+        //     id: 4,
+        //     buttonClicked: pickUp,
+        //     title: 'End turn - Закончить ход',
+        //     isDisabled: false},
     ];
 
-    return (
-        <Buttons arrayButtons={arrayButtons}/>
-    );
+    return <Buttons arrayButtons={arrayButtons}/>
 }
 
 const mapStateToProps = (state: any): any => ({
-    compare: state.main.compare,
     cards: state.main.cards,
     cardsGamer1: state.main.cardsGamer1,
     cardsGamer2: state.main.cardsGamer2,

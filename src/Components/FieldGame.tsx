@@ -14,9 +14,12 @@ interface IPropsFieldGame {
     compare: string,
     gameOver: () => void,
     strokeNumber: number,
+    gameMove: () => void,
+    pickUpCards: () => void,
+    compareGameCards: () => void,
 }
 
-function FieldGame({cardsGamer1, cardsGamer2, cardGamer1, cardGamer2,
+function FieldGame({cardsGamer1, cardsGamer2, cardGamer1, cardGamer2, gameMove, pickUpCards, compareGameCards,
                        compare, gameOver, strokeNumber}: IPropsFieldGame) {
 
     return (
@@ -25,7 +28,9 @@ function FieldGame({cardsGamer1, cardsGamer2, cardGamer1, cardGamer2,
             <PlayerCards numbersOfCards={cardsGamer1.length} gamer={'Gamer 1'}/>
             <FieldForCards cardGamer1={cardGamer1}
                        cardGamer2={cardGamer2}
-                       compare={compare}/>
+                       compare={compare}
+            gameMove={gameMove} pickUpCards={pickUpCards}
+                           compareGameCards={compareGameCards}/>
 
             {
                 (cardsGamer2.length === 36 || cardsGamer1.length === 36)

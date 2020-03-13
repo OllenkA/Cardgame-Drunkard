@@ -8,7 +8,7 @@ interface IPropsButtons {
 
 function Buttons({arrayButtons}: IPropsButtons) {
 
-    const array = arrayButtons.map((el:any) => {
+    const array = arrayButtons.map((el: any) => {
 
         return <Button key={el.id}
                        buttonClicked={el.buttonClicked}
@@ -16,13 +16,9 @@ function Buttons({arrayButtons}: IPropsButtons) {
                        isDisabled={el.isDisabled}/>
     });
 
-    return (
-        <section className='buttonsWrapper'>
-
-            {array}
-
-        </section>
-    );
+    return <section className='buttonsWrapper'>
+        {array}
+    </section>
 }
 
 export default Buttons;

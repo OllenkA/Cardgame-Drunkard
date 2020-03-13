@@ -10,7 +10,7 @@ export const COMPARE_GAME_CARDS = 'COMPARE_GAME_CARDS';
 export const PICK_UP_CARDS = 'PICK_UP_CARDS';
 export const GAME_OVER = 'GAME_OVER';
 
-const initialState: IReducerState = {
+export const initialState: IReducerState = {
     cards: [],
     cardsGamer1: [],
     cardsGamer2: [],
